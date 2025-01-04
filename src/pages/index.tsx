@@ -27,6 +27,10 @@ const getData = async () => {
 
 export const getConfig = async () => {
   return {
-    render: 'static',
+    // There can be hydration errors from useQueryState if the render mode is static
+    // So you need to decide whether to allow the hydration mismatch or
+    // switch to dynamic rendering that will render the server html with the query
+    render: 'dynamic',
+    // render: 'static',
   } as const;
 };
