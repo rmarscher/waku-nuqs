@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "nuqs": "^2.3.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.0.0-rc-7670501b-20241124",
+    "react-dom": "19.0.0-rc-7670501b-20241124",
     "react-error-boundary": "^5.0.0",
-    "react-server-dom-webpack": "19.0.0",
-    "waku": "0.21.12"
+    "react-server-dom-webpack": "19.0.0-rc-7670501b-20241124",
+    "waku": "0.21.7"
   },
   "devDependencies": {
     "@types/react": "19.0.2",
