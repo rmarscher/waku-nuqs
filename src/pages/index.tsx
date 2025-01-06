@@ -2,9 +2,25 @@ import { Link } from "waku";
 
 import { Form } from "../components/form";
 import { formQueryCache } from "../server/form";
+import { getHonoContext } from "waku/unstable_hono";
+
+function getSearchParams({ query }: { query?: string }) {
+  if (query) {
+    return Object.fromEntries(new URLSearchParams(query));
+  }
+  // This is probably working around a waku bug that has since been fixed but
+  // just in case the query prop isn't passed, try to get it from the hono
+  // context.
+  try {
+    const c = getHonoContext();
+    return Object.fromEntries(new URL(c.req.url).searchParams);
+  } catch (e) {
+    return {};
+  }
+}
 
 export default async function HomePage({ query }: { query: string }) {
-  const searchParams = Object.fromEntries(new URLSearchParams(query));
+  const searchParams = getSearchParams({ query });
   const { value } = formQueryCache.parse(searchParams);
   const data = await getData({ value });
 
