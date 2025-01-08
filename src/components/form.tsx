@@ -20,7 +20,10 @@ export const Form = () => {
         Update via server / RSC:
         <input
           value={value}
-          onChange={(evt) => setValue(evt.target.value)}
+          onChange={(evt) => {
+            console.log(`updating value via server to '${evt.target.value}'`);
+						setValue(evt.target.value);
+          }}
           className="rounded-sm px-2 py-0.5 text-sm border"
         />
       </div>
@@ -29,7 +32,10 @@ export const Form = () => {
         Shallow / client-only update:
         <input
           value={valueShallow}
-          onChange={(evt) => setValueShallow(evt.target.value)}
+          onChange={(evt) => {
+            console.log(`updating value on client only to '${evt.target.value}'`);
+						setValueShallow(evt.target.value)
+          }}
           className="rounded-sm px-2 py-0.5 text-sm border"
         />
       </div>

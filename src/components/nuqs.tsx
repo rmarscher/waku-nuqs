@@ -7,19 +7,14 @@ import {
 } from "nuqs/adapters/custom";
 import { useRouter_UNSTABLE as useRouter } from "waku";
 
-export function renderURL(base: string, search: URLSearchParams) {
-  const hashlessBase = base.split("#")[0] ?? "";
-  const query = renderQueryString(search);
-  const hash = location.hash;
-  return hashlessBase + query + hash;
-}
-
 function useNuqsAdapter() {
-  const { query, push, replace } = useRouter();
+  const { path, query, push, replace } = useRouter();
   const searchParams = new URLSearchParams(query);
   const updateUrl = (search: URLSearchParams, options: AdapterOptions) => {
     if (options.shallow) {
-      const url = renderURL(location.origin + location.pathname, search);
+      const query = renderQueryString(search);
+      const hash = location.hash;
+      const url = location.origin + path + query + hash;
       options.history === "push"
         ? history.pushState(null, "", url)
         : history.replaceState(null, "", url);

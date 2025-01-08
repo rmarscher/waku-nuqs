@@ -36,8 +36,8 @@ export default async function HomePage({ query }: { query: string }) {
 
 const getData = async ({ value = "world" }: { value: string }) => {
   const data = {
-    title: "Waku",
-    headline: "Waku",
+    title: "Waku + Nuqs",
+    headline: "Waku + Nuqs",
     body: `Hello from server: ${value}!`,
   };
 
